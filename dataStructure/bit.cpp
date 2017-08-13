@@ -1,30 +1,24 @@
+#define N_BIT 
 struct BIT{
-    long long c[N];
+	ll c[N_BIT];
     int n;
-    BIT()
-    {
-        memset(c,0,sizeof(c));
-        n=0;
+    BIT(int n){        
+		memset(c,0,sizeof(c));n=n;
     }
-
-    inline int lowbit(int x)
-    {
+    inline int lowbit(int x){
         return x&(-x);
     }
-    inline void modify(int x,long long y)
-    {
+    inline void modify(int x,ll y){
         for(;x<=n;x+=lowbit(x))
             c[x]+=y;
     }
-    inline long long query(int x)
-    {
-        long long ret=0;
+    inline ll query(int x){
+        ll ret=0;
         for(;x;x-=lowbit(x))
             ret+=c[x];
         return ret;
     }
-    inline long long query(int l,int r)
-    {
+    inline ll query(int l,int r){
         return query(r)-query(l-1);
     }
 };
